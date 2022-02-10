@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export default{
  
-  //查询订单列表
+  //查询服务列表
   list() {
     return request({
       url: '/api/order-info/list',

@@ -3,12 +3,12 @@
     <section id="index" class="container">
       <header class="comm-title">
         <h2 class="fl tac">
-          <span class="c-333">课程列表</span>
+          <span class="c-333">服务列表</span>
         </h2>
       </header>
       <ul>
         <li v-for="product in productList" :key="product.id">
-          <a :class="['orderBtn', {current:payOrder.productId === product.id}]" 
+          <a style="width:263px;" :class="['orderBtn', {current:payOrder.productId === product.id}]" 
             @click="selectItem(product.id)" 
             href="javascript:void(0);" >
             {{product.title}} 
@@ -103,12 +103,12 @@ export default {
       payBtnDisabled: false, //确认支付按钮是否禁用
       codeDialogVisible: false, //微信支付二维码弹窗
       productList: [], //商品列表
-      payOrder: { //订单信息
+      payOrder: { //服务信息
         productId: '', //商品id
         payType: 'wxpay' //支付方式
       },
       codeUrl: '', // 二维码
-      orderNo: '', //订单号
+      orderNo: '', //服务号
       timer: null // 定时器
     }
   },
@@ -155,7 +155,7 @@ export default {
 
           //启动定时器
           this.timer = setInterval(() => {
-            //查询订单是否支付成功
+            //查询服务是否支付成功
             this.queryOrderStatus()
           }, 3000)
 
@@ -180,7 +180,7 @@ export default {
 
           //启动定时器
           this.timer = setInterval(() => {
-            //查询订单是否支付成功
+            //查询服务是否支付成功
             this.queryOrderStatus()
           }, 3000)
 
@@ -197,17 +197,17 @@ export default {
     },
 
 
-    // 查询订单状态
+    // 查询服务状态
     queryOrderStatus() {
 
       orderInfoApi.queryOrderStatus(this.orderNo).then(response => {
-        console.log('查询订单状态：' + response.code)
+        console.log('查询服务状态：' + response.code)
 
         // 支付成功后的页面跳转
         if (response.code === 0) {
           console.log('清除定时器')
           clearInterval(this.timer)
-          // 三秒后跳转到订单列表
+          // 三秒后跳转到服务列表
           setTimeout(() => {
             this.$router.push({ path: '/success' })
           }, 3000)
